@@ -1,4 +1,5 @@
-const API_ENDPOINT = "/ask";
+const BACKEND_BASE = "https://sushik0305-document-intelligence.hf.space";
+const API_ENDPOINT = `${BACKEND_BASE}/ask`;
 
 const el = (id) => document.getElementById(id);
 
