@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document Intelligence Assistant</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body>
+  <div class="bg">
+    <div class="bgNoise"></div>
+  </div>
+
+  <main class="app">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">DI</div>
+        <div class="brandText">
+          <div class="brandTitle">Document Intelligence Assistant</div>
+          <div class="brandSub">RAG • Semantic Search • HR Knowledge</div>
+        </div>
+      </div>
+
+      <div class="status">
+        <span class="statusDot"></span>
+        <span>System Online</span>
+      </div>
+    </header>
+
+    <section class="layout">
+      <section class="panel">
+        <h2 class="panelTitle">Ask your question</h2>
+        <p class="panelHint">
+          Tip: Try keywords like <b>rate card</b>, <b>compliance</b>, <b>screening</b>, <b>placement</b>.
+        </p>
+
+        <label class="label" for="question">Question</label>
+        <textarea id="question" placeholder="E.g., What is the rate card for 2026?"></textarea>
+
+        <div class="actions">
+          <button class="btn primary" onclick="askQuestion()">Ask</button>
+          <button class="btn" onclick="fillSample()">Sample</button>
+          <button class="btn" onclick="clearAll()">Clear</button>
+        </div>
+
+        <div id="loading" class="loading hidden">
+          <div class="spinner"></div>
+          <div>
+            <div class="loadingTitle">Thinking...</div>
+            <div class="loadingSub">Searching documents + scoring similarity</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel resultPanel">
+        <div class="resultHeader">
+          <h2 class="panelTitle">Results</h2>
+          <div id="badges" class="badges"></div>
+        </div>
+
+        <div id="result" class="resultBox">
+          <div class="empty">
+            <div class="emptyIcon">✨</div>
+            <div class="emptyTitle">Ready when you are</div>
+            <div class="emptySub">Ask a question to see answer, similarity, confidence and evidence.</div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    function fillSample() {
+      document.getElementById("question").value = "What is the rate card for 2026?";
+      document.getElementById("question").focus();
+    }
+
+    function clearAll() {
+      document.getElementById("question").value = "";
+      document.getElementById("badges").innerHTML = "";
+      document.getElementById("result").innerHTML = `
+        <div class="empty">
+          <div class="emptyIcon">✨</div>
+          <div class="emptyTitle">Ready when you are</div>
+          <div class="emptySub">Ask a question to see answer, similarity, confidence and evidence.</div>
+        </div>
+      `;
+    }
+  </script>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
